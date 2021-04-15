@@ -79,15 +79,13 @@ cv=StratifiedKFold(5).split(X=feats, y=data['Cohort']) ## Crossvalidation strati
 
 
 ### Models to be learnt and evaluated
-alphas=np.linspace(0.01,30, 2000) ## alpha space for regularization
 
-lasso=LassoCV(alphas=alphas, fit_intercept=True, cv = 5)
-ridge=RidgeCV(alphas=alphas, fit_intercept=True, cv = 5)
+lasso=LassoCV(fit_intercept=True, cv = 5)
+ridge=RidgeCV(fit_intercept=True, cv = 5)
 pls=PLSRegression(n_components=10, scale=False)
 gbr=GradientBoostingRegressor(loss='lad')
 
-
-regressors=[lasso,ridge]
+regressors=[lasso,ridge, pls, gbr]
 
 # %% #### Pipeline ####
 
@@ -110,7 +108,7 @@ for target in targets:
 # %% #### Fine tuning best estimators (Ridge), train one model for each target ###
 
 feats_s = StandardScaler().fit_transform(data.loc[:,feats].values)
-
+alphas=np.linspace(0.01,30, 2000) ## regularization space
 reg=RidgeCV(alphas=alphas, normalize=False, cv=5, fit_intercept=True)
 
 scores = [] ## store model results (prediction R^2, coefficients and predictions\)
@@ -131,7 +129,6 @@ for target in targets:
 
 for i in range (len (coeffs)):
     feat_rank_idx = np.argsort(coeffs[i])[::-1]
-
 
     f,ax=plt.subplots(figsize=(20,20))
     ax.scatter(np.arange(0,10),np.sort(np.abs(coeffs[i]))[::-1], marker='^', alpha=.6,
@@ -164,7 +161,7 @@ for c, feat in enumerate(feats):
     
     t_data[0,:] = data.loc[:,targets[0]].values
     t_data[1:,] = preds[0]
-    
+
     score_df=pd.DataFrame(columns=['True Label', 'Predicted Label'], data=t_data.T)
     score_df[feat] = data[feat].values
     score_df['target_cat'] = data['BMI_T0'].values
