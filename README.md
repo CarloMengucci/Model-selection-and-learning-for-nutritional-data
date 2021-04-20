@@ -22,6 +22,10 @@ reciprocal influence of the other variables.
 Some plotting utitlities are also implemented: spearman heatmap correlation plotting, R score prediction plotting with normalized gradients for the features. The latter is
 useful for visualizing strong monovariate effects of inadequate macronutrient intake on the clinical targets.
 
+
 ![Sample fine tuned prediction using Ridge Regression; gradient describes protein intake](https://github.com/CarloMengucci/Model-selection-and-learning-for-nutritional-data/blob/main/delta_grads_m_BMI_Protein_delta.png)
+
+
+*Sample fine tuned prediction using Ridge Regression; gradient describes protein intake*
 
 **Requirements**: code is compatible with Python 3.8 environments, requiring the following packages to be properly installed: Numpy, Pandas, SKlearn, Seaborn
