@@ -19,8 +19,7 @@ effects could be not evident with univariate analysis and must be considered in 
 reciprocal influence of the other variables.
 
 **Code**: A sample pipeline built over sklearn objects, to perform model selection and fine tuning over the learnt best model using different multivariate regressions.
-Some plotting utitlities are also implemented: spearman heatmap correlation plotting, R score prediction plotting with normalized gradients for the features. The latter is
-useful for visualizing strong monovariate effects of inadequate macronutrient intake on the clinical targets.
+Some plotting utitlities are also implemented: spearman heatmap correlation plotting, R score prediction plotting with normalized gradients for the features and Ridge coefficients plotting. The latter is useful for visualizing strong monovariate effects of inadequate macronutrient intake on the clinical targets.
 
 
 ![Sample fine tuned prediction using Ridge Regression; gradient describes protein intake](https://github.com/CarloMengucci/Model-selection-and-learning-for-nutritional-data/blob/main/delta_grads_m_BMI_Protein_delta.png)
